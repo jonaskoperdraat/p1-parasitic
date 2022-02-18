@@ -63,6 +63,17 @@ In order to test whether the M5stick can operate off of the M5stick, without wor
         * Go to sleep for 10 seconds
 * See how long the device lasts. Without power supply, this program can run roughly 3.5 hours.
 
+**17 feb 2021, 11:55**
+
+Just connecting the M5stick to the P1 port using above schema does not show any voltage reported on `v_5vin` or current on `i_5vin`.
+
+:question: Perhaps there's a hardware or configuration adjustment needs to be done before this can be used? 
+:question:Or the P1 port might not be able to supply the requested current? 
+
+**17 feb 2021, 17:00**
+
+Apparently I just had +5V and GND mixed up. Sorting this out runs the M5stick just fine.
+
 ## Notes
 
 The M5stickC suffers from a bug where uploading times out. This can be remidied by either shorting `G0` to `GND` while programming using a dupont line, or by updating the firmware if you're brave enough [^2].
