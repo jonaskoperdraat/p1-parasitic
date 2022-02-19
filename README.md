@@ -38,7 +38,7 @@ I haven't been able to find a spec for ESMR5.0, but [ref/DSMRv5.0.pdf] is a spec
 
 This might even be enough to not have to worry too much about deep sleep...
 
-## Test setup
+##### Test setup
 Let's see if this configuration will run the M5Stick-C
 
 ```
@@ -73,6 +73,46 @@ Just connecting the M5stick to the P1 port using above schema does not show any 
 **17 feb 2021, 17:00**
 
 Apparently I just had +5V and GND mixed up. Sorting this out runs the M5stick just fine.
+
+
+## Implementation
+
+I've thought about a number of 'clever' ways to wait for telegrams and to go into deep sleep mode in between.
+Like being woken by a timer, or by incoming telegrams. This was mostly motivated by the thought that the P1
+port would only supply enough power to charge whilst in deep sleep, and not for sending. However, these 
+methods add complexity and might not even be needed, seeing as the P1 port is supposed to be able to provide
+250mA.
+
+So I'm starting out (relatively) simple:
+
+> Hardwire the +5V to the Data request line (#1 to #2) on the P1 port to continually request telegrams.
+>
+> * Connect to WiFi
+> * Connect to MQTT
+> * Wait for telegram
+>   * Upon receiving telegram, send to MQTT \
+>     Each telegram will be converted into a JSON message and sent as a single message to MQTT.
+>     This can be done using [this library](https://github.com/matthijskooijman/arduino-dsmr)
+>   * Wait for next telegram
+>
+> Display:
+>   * WiFi status
+>   * MQTT status
+>   * \# telegrams received
+>   * \# telegrams sent
+>
+> Connection mechanism:
+> * Whenever WiFi is disconnected
+>   * Attempt to connect
+>       * If unsuccessfull, wait _d_ seconds \
+>         _d_ being determined by number of attempts, _n_ made so far:
+>         | *n* | 1  | 2  | 3  | 4+ |
+>         | --- | -: | -: | -: | -: |
+>         | ***d*** | 5  | 10 | 30 | 60 |
+>       * If successful, reset _n_.
+> * Whenever MQTT is disconnected, follow the same schema for connecting to WiFi,
+>   *only if* WiFi is connected. Otherwise, do nothing.
+
 
 ## Notes
 
