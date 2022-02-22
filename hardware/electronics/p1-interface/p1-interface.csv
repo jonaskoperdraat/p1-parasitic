@@ -1,0 +1,32 @@
+"Source:","/Users/jonas/Projects/Prive/p1-parasitic/schematics/p1-interface/p1-interface.kicad_sch"
+"Date:","2022 February 19, Saturday 23:25:41"
+"Tool:","Eeschema (6.0.2-0)"
+"Generator:","/Applications/KiCad/KiCad.app/Contents/SharedSupport/plugins/bom_csv_grouped_by_value.py"
+"Component Count:","9"
+
+"Individual Components:"
+
+"Item","Qty","Reference(s)","Value","LibPart","Footprint","Datasheet"
+"","","D1","1N5819","Diode:1N5819","Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal","http://www.vishay.com/docs/88525/1n5817.pdf"
+"","","JM5","Conn_01x08_Male","Connector:Conn_01x08_Male","Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal","~"
+"","","JP1","Conn_01x06_Female","Connector:Conn_01x06_Female","Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Horizontal","~"
+"","","Opto1","4N35","Isolator:4N35","Package_DIP:DIP-6_W7.62mm","https://www.vishay.com/docs/81181/4n35.pdf"
+"","","Q1","BC547","Transistor_BJT:BC547","Package_TO_SOT_THT:TO-92_Inline","https://www.onsemi.com/pub/Collateral/BC550-D.pdf"
+"","","R1","220","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+"","","R2","10k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+"","","R3","1k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+"","","R4","1k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+
+
+
+"Collated Components:"
+
+"Item","Qty","Reference(s)","Value","LibPart","Footprint","Datasheet"
+"1","1","D1","1N5819","Diode:1N5819","Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal","http://www.vishay.com/docs/88525/1n5817.pdf"
+"2","1","JM5","Conn_01x08_Male","Connector:Conn_01x08_Male","Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal","~"
+"3","1","JP1","Conn_01x06_Female","Connector:Conn_01x06_Female","Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Horizontal","~"
+"4","1","Opto1","4N35","Isolator:4N35","Package_DIP:DIP-6_W7.62mm","https://www.vishay.com/docs/81181/4n35.pdf"
+"5","1","Q1","BC547","Transistor_BJT:BC547","Package_TO_SOT_THT:TO-92_Inline","https://www.onsemi.com/pub/Collateral/BC550-D.pdf"
+"6","1","R1","220","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+"7","1","R2","10k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"
+"8","2","R3, R4","1k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~"

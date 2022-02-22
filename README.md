@@ -63,17 +63,9 @@ In order to test whether the M5stick can operate off of the M5stick, without wor
         * Go to sleep for 10 seconds
 * See how long the device lasts. Without power supply, this program can run roughly 3.5 hours.
 
-**17 feb 2021, 11:55**
-
-Just connecting the M5stick to the P1 port using above schema does not show any voltage reported on `v_5vin` or current on `i_5vin`.
-
-:question: Perhaps there's a hardware or configuration adjustment needs to be done before this can be used? 
-:question:Or the P1 port might not be able to supply the requested current? 
-
-**17 feb 2021, 17:00**
-
-Apparently I just had +5V and GND mixed up. Sorting this out runs the M5stick just fine.
-
+The P1 port supplies enough power for the M5Stick to run for a prolonged period. The current setup has been
+with putting the M5Stick into deep sleep and waking every 10s to connect to WiFi, MQTT, read the P1 data and
+publish to MQTT.
 
 ## Implementation
 
@@ -83,10 +75,8 @@ port would only supply enough power to charge whilst in deep sleep, and not for 
 methods add complexity and might not even be needed, seeing as the P1 port is supposed to be able to provide
 250mA.
 
-So I'm starting out (relatively) simple:
+So I'm starting out (relatively) simple.
 
-> Hardwire the +5V to the Data request line (#1 to #2) on the P1 port to continually request telegrams.
->
 > * Connect to WiFi
 > * Connect to MQTT
 > * Wait for telegram
@@ -99,7 +89,7 @@ So I'm starting out (relatively) simple:
 >   * WiFi status
 >   * MQTT status
 >   * \# telegrams received
->   * \# telegrams sent
+>   * \# telegrams sent to MQTT
 >
 > Connection mechanism:
 > * Whenever WiFi is disconnected
@@ -118,6 +108,29 @@ So I'm starting out (relatively) simple:
 
 The M5stickC suffers from a bug where uploading times out. This can be remidied by either shorting `G0` to `GND` while programming using a dupont line, or by updating the firmware if you're brave enough [^2].
 update: I've updated the firmware, ridding the device of said bug.
+
+## Log
+
+**17 feb 2021, 11:55**
+
+Just connecting the M5stick to the P1 port using above schema does not show any voltage reported on `v_5vin` or current on `i_5vin`.
+
+:question: Perhaps there's a hardware or configuration adjustment needs to be done before this can be used? 
+:question:Or the P1 port might not be able to supply the requested current? 
+
+**17 feb 2021, 17:00**
+
+Apparently I just had +5V and GND mixed up. Sorting this out runs the M5stick just fine.
+
+**19 feb**
+
+I've created the [electronics design](hardware/readme.md) on a breadboard. This turned out to work and I was able
+to read P1 messages coming from the meter.
+
+**20 feb** 
+
+I've converted the electronics design from breadboard to prototype PCB as well as designed an [enclosure](hardware/casing).
+The M5Stick has been running fine in the 10s sleep/measure cycle. 
 
 
 ## References
